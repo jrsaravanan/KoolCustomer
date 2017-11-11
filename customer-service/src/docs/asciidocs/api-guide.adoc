@@ -1,0 +1,21 @@
+= Greeting REST Service API Guide
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+ 
+= Customer Service Resources
+ 
+== Ping 
+Check service health
+ 
+.request 
+include::{snippets}\ping\http-request.adoc[]
+include::{snippets}\ping\curl-request.adoc[]
+include::{snippets}\ping\httpie-request.adoc[]
+
+.response
+include::{snippets}/ping/http-response.adoc[]
+
