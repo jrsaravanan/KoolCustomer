@@ -20,8 +20,6 @@ public class Customer {
 	private String firstname;
 	
 	@Column(name = "LAST_NAME")
-	
-	
 	private String lastname;
 
 	public Long getId() {
