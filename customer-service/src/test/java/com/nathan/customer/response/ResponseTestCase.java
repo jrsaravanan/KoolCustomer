@@ -23,7 +23,7 @@ public class ResponseTestCase {
 		assertThat(response.getMeta().size(), greaterThan(0));
 
 		response.getMeta().put("TEST1", "TEST1_VALUE");
-		assertThat(response.getMeta().get("TEST1"), equalTo("TEST_VALUE"));
+		assertThat(response.getMeta().get("TEST1"), equalTo("TEST1_VALUE"));
 	}
 
 }
