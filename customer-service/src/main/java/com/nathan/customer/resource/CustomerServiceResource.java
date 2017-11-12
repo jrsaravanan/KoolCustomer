@@ -15,7 +15,7 @@ import com.nathan.customer.response.PingResponse;
  *
  */
 @RestController
-@RequestMapping("v1")
+@RequestMapping("v1.0")
 public class CustomerServiceResource {
 
 	
