@@ -36,6 +36,7 @@
 		<spring-cloud.version>Dalston.SR4</spring-cloud.version>
 		<snippetsDirectory>${project.build.directory}/snippets</snippetsDirectory>
 		 <asciidoctor.maven.plugin.version>1.5.6</asciidoctor.maven.plugin.version>
+		 <spring.boot.admin>1.5.4</spring.boot.admin>
 	</properties>
 
 	<dependencies>
@@ -70,6 +71,12 @@
 		<dependency>
 			<groupId>org.springframework.restdocs</groupId>
 			<artifactId>spring-restdocs-mockmvc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>${spring.boot.admin}</version>
 		</dependency>
 
 		<dependency>
