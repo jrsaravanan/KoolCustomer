@@ -10,6 +10,8 @@
 
 	<modules>
 		<module>customer-service</module>		
+		<module>customer-admin</module>		
+		<module>customer-discovery</module>
 	</modules>
 
 </project>
