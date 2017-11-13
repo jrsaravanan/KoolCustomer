@@ -5,16 +5,13 @@
 :toc: left
 :toclevels: 4
 :sectlinks:
- 
-= Customer Service Resources
- 
+   
 == Ping 
 Check service health
  
 .request 
 include::{snippets}\ping\http-request.adoc[]
 include::{snippets}\ping\curl-request.adoc[]
-include::{snippets}\ping\httpie-request.adoc[]
 
 .response
 include::{snippets}/ping/http-response.adoc[]
@@ -26,7 +23,19 @@ include::{snippets}/ping/http-response.adoc[]
 .request 
 include::{snippets}\customers\http-request.adoc[]
 include::{snippets}\customers\curl-request.adoc[]
-include::{snippets}\customers\httpie-request.adoc[]
 
 .response
 include::{snippets}/customers/http-response.adoc[]
+
+
+
+== CustomerById
+
+ 
+.request 
+include::{snippets}\customer-id\http-request.adoc[]
+include::{snippets}\customer-id\curl-request.adoc[]
+
+
+.response
+include::{snippets}/customer-id/http-response.adoc[]

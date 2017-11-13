@@ -11,6 +11,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +51,7 @@ public class CustomerServiceApplicationTests {
 	@Test
 	public void noParamPingShouldReturnDefaultMessage() throws Exception {
 
-		this.mockMvc.perform(get("/v1.0/ping")).andDo(print()).andExpect(status().isOk())
+		this.mockMvc.perform(get("/v1.0/customers/ping")).andDo(print()).andExpect(status().isOk())
 				.andDo(document("ping", responseFields(fieldWithPath("message").description("Response test message")
 
 		)));
@@ -70,9 +73,32 @@ public class CustomerServiceApplicationTests {
 			      .andExpect(status().isOk())
 			      .andExpect(jsonPath("$.firstName", is(response.getFirstName())))
 			      .andDo(
-			    	 document("customers",  responseFields (
+			    	 document("customer-id",  responseFields (
 			    			 	fieldWithPath("firstName").description("First Name") ,
 			    			 	fieldWithPath("lastName").description("Last Name")
+			    			 )));
+
+	}
+	
+	@Test
+	public void getCustomers() throws Exception {
+		
+		CustomerResponse response = new CustomerResponse();
+		response.setFirstName("TEST_FIRST_NAME");
+		response.setLastName("TEST_LAST_NAME");
+		
+		List<CustomerResponse> collection = Arrays.asList(response);
+		
+		given(customerService.getCustomers()).willReturn(collection);
+
+		mockMvc.perform(get("/v1.0/customers")
+			      .contentType(MediaType.APPLICATION_JSON))
+			      .andExpect(status().isOk())
+			      .andExpect(jsonPath("$[0].firstName", is(response.getFirstName())))
+			      .andDo(
+			    	 document("customers",  responseFields (
+			    			 	fieldWithPath("[].firstName").description("First Name") ,
+			    			 	fieldWithPath("[].lastName").description("Last Name")
 			    			 )));
 
 	}

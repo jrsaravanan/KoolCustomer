@@ -1,6 +1,9 @@
 package com.nathan.customer.resource;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.EntityLinks;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +22,12 @@ import com.nathan.customer.service.CustomerService;
  *
  */
 @RestController
-@RequestMapping("v1.0")
+@RequestMapping("v1.0/customers")
 public class CustomerServiceResource {
 
 	@Autowired
 	private CustomerService customerService;
+	
 	
 	private static final String template = "Hello, %s!";
 	
@@ -36,10 +40,19 @@ public class CustomerServiceResource {
 		return new PingResponse(String.format(template, name));
 	}
 	
+	
 	/**
 	 * Get customer details by id 
 	 */
-	@RequestMapping(method = RequestMethod.GET , path ="/customers/{id}" , produces = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE })
+	@RequestMapping(method = RequestMethod.GET , path ="" , produces = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE })
+	public List<CustomerResponse> getAllCustomers() {
+		return customerService.getCustomers();
+	}
+	
+	/**
+	 * Get customer details by id 
+	 */
+	@RequestMapping(method = RequestMethod.GET , path ="/{id}" , produces = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE })
 	public CustomerResponse getCustomer(@PathVariable("id") Long id) {
 		return customerService.getCustomer(id);
 	}

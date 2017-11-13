@@ -6,7 +6,7 @@ spring:
   password: ${CUSTOMER_APP_PASSWORD:appuser}
   driver-class-name: com.mysql.jdbc.Driver  
  jpa:
-  hibernate.ddl-auto: create
+  hibernate.ddl-auto: update
   hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
   hibernate.format_sql: true
   show-sql: true

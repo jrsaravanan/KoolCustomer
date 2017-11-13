@@ -1,5 +1,7 @@
 package com.nathan.customer.service;
 
+import java.util.List;
+
 import com.nathan.customer.response.CustomerResponse;
 
 /**
@@ -13,4 +15,10 @@ public interface CustomerService {
 	 * @return {@link CustomerResponse}
 	 */
 	public CustomerResponse getCustomer(Long id);
+	
+	/**
+	 * get all customers
+	 */
+	public List<CustomerResponse> getCustomers();
+	
 }

@@ -1,11 +1,20 @@
 package com.nathan.customer.service;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Service;
 
 import com.nathan.customer.entity.Customer;
+import com.nathan.customer.exception.CustomerNotFoundException;
 import com.nathan.customer.repository.CustomerRepository;
+import com.nathan.customer.resource.CustomerServiceResource;
 import com.nathan.customer.response.CustomerResponse;
 
 /**
@@ -27,12 +36,29 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public CustomerResponse getCustomer(Long id) {
+
 		Customer entity = customerRepository.findById(id);
-		return toResponse(entity);
+		return Optional.ofNullable(entity)
+				.map(p -> toResponse(entity))
+				.orElseThrow(() -> new CustomerNotFoundException(id));
 	}
 	
 	private CustomerResponse toResponse(Customer entity) {
-		return modelMapper.map(entity, CustomerResponse.class);
+		CustomerResponse response = modelMapper.map(entity, CustomerResponse.class);
+		Link selfLink = linkTo(CustomerServiceResource.class).slash(entity.getId()).withSelfRel();
+        response.add(selfLink);
+        return response;
 	}
+
+	@Override
+	public List<CustomerResponse> getCustomers() {
+		
+		List<Customer> collection = customerRepository.findAll();
+		
+		return collection.stream()
+			.map(p -> toResponse(p))
+			.collect(Collectors.toList());
+	}
+	
 
 }
