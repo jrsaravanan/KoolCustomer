@@ -31,19 +31,19 @@ public class RepositoryTests {
 	public void testSaveAndUpdate() {
 		
 		Customer entity = new Customer();
-		entity.setFirstname("SASA");
-		entity.setLastname("SAAI");
+		entity.setFirstName("SASA");
+		entity.setLastName("SAAI");
 		repository.save(entity);
 		assertThat(repository.findAll(), hasSize(1));
 		
-		entity.setLastname("TEST_LAST");
-		entity.setFirstname("TEST_FIRST");
+		entity.setLastName("TEST_LAST");
+		entity.setFirstName("TEST_FIRST");
 		
 		repository.save(entity);
 		
-		Customer updateObject = repository.findByLastname("TEST_LAST");
-		assertThat(updateObject.getFirstname(), equalTo("TEST_FIRST"));
-		assertThat(updateObject.getLastname(), equalTo("TEST_LAST"));
+		Customer updateObject = repository.findByLastName("TEST_LAST");
+		assertThat(updateObject.getFirstName(), equalTo("TEST_FIRST"));
+		assertThat(updateObject.getLastName(), equalTo("TEST_LAST"));
 		
 	}
 
@@ -51,8 +51,8 @@ public class RepositoryTests {
 	public void testFindAndDelete() {
 		
 		Customer entity = new Customer();
-		entity.setFirstname("SASA");
-		entity.setLastname("SAAI");
+		entity.setFirstName("SASA");
+		entity.setLastName("SAAI");
 		repository.save(entity);
 		
 		assertThat(repository.findAll(), hasSize(1));

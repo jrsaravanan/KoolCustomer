@@ -1,10 +1,12 @@
 #spring.jpa.hibernate.ddl-auto=update
 spring:
- profiles: test
  datasource:
-  url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
+  url: jdbc:mysql://${CUSTOMER_DB_URI:localhost:3306/customers}
+  username: ${CUSTOMER_APP_USER:appuser}
+  password: ${CUSTOMER_APP_PASSWORD:appuser}
+  driver-class-name: com.mysql.jdbc.Driver  
  jpa:
-  hibernate.ddl-auto: create-drop
+  hibernate.ddl-auto: create
   hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
   hibernate.format_sql: true
   show-sql: true
