@@ -1,4 +1,4 @@
-package com.nathan.customer.response;
+package com.nathan.customer.dto;
 
 import java.util.HashMap;
 import java.util.Map;

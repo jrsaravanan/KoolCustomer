@@ -7,6 +7,8 @@ import static org.junit.Assert.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.nathan.customer.dto.PingResponse;
+
 
 public class ResponseTestCase {
 

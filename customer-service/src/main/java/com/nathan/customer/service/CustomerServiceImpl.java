@@ -11,11 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Service;
 
+import com.nathan.customer.dto.CustomerRequest;
+import com.nathan.customer.dto.CustomerResponse;
 import com.nathan.customer.entity.Customer;
 import com.nathan.customer.exception.CustomerNotFoundException;
 import com.nathan.customer.repository.CustomerRepository;
 import com.nathan.customer.resource.CustomerServiceResource;
-import com.nathan.customer.response.CustomerResponse;
 
 /**
  * Customer Service 
@@ -60,5 +61,20 @@ public class CustomerServiceImpl implements CustomerService {
 			.collect(Collectors.toList());
 	}
 	
+	
+	@Override 
+	public CustomerResponse saveCustomer(final CustomerRequest request ) {
+		
+		Customer entity = toEntity(request);
+		customerRepository.save(entity);
+		//Link selfLink = linkTo(CustomerServiceResource.class).slash(entity.getId()).withSelfRel();
+		CustomerResponse response = toResponse(entity);
+		//response.add(selfLink);
+		return response;
+	}
+	
 
+	public Customer toEntity(final CustomerRequest customer) {
+		return modelMapper.map(customer, Customer.class);
+	}
 }

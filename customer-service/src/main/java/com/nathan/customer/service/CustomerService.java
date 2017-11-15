@@ -2,7 +2,8 @@ package com.nathan.customer.service;
 
 import java.util.List;
 
-import com.nathan.customer.response.CustomerResponse;
+import com.nathan.customer.dto.CustomerRequest;
+import com.nathan.customer.dto.CustomerResponse;
 
 /**
  *  Customer service 
@@ -20,5 +21,12 @@ public interface CustomerService {
 	 * get all customers
 	 */
 	public List<CustomerResponse> getCustomers();
+
+	/**
+	 * save customer 
+	 * @param request
+	 * @return {@link CustomerResponse}
+	 */
+	public CustomerResponse saveCustomer(CustomerRequest request);
 	
 }

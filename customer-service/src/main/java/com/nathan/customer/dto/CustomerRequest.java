@@ -1,9 +1,9 @@
-package com.nathan.customer.response;
+package com.nathan.customer.dto;
 
-public class CustomerResponse extends DefaultRespose {
+public class CustomerRequest {
 
 	private String firstName;
-	private String  lastName;
+	private String lastName;
 	
 	public String getFirstName() {
 		return firstName;
