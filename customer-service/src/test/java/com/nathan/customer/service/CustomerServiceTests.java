@@ -4,11 +4,10 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Matchers.anyLong;
 import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.mock;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -82,17 +81,39 @@ public class CustomerServiceTests {
 		given(this.repository.save(any(Customer.class))).willReturn(mockCustomerObject());
 		CustomerResponse response = service.saveCustomer(mockCustomerRequest());
 		LOGGER.info("Response id -- {} --- " , response.getId());
-		// seriously TEST_FIRST_REQ again ?  :)
-		// little catch here , to avoid one assignment statement in service class
 		assertThat(response.getFirstName(), equalTo("TEST_FIRST_REQ"));
 	}
 	
+	@Test
+	public void testUpdateCustomerRequest() {
+		given(this.repository.findById(anyLong())).willReturn(mockCustomerObject());
+		service.updateCustomer(mockCustomerRequest());
+	}
+	
+	@Test
+	public void testDeleteCustomerRequest() {
+		given(this.repository.findById(anyLong())).willReturn(mockCustomerObject());
+		service.deleteCustomer(anyLong());
+	}
+	
 	@Test(expected = CustomerNotFoundException.class) 
-	public void empty() { 
+	public void noCustomerFound() { 
 		given(this.repository.findById(anyLong())).willReturn(null);
 		service.getCustomer(10L);
 	}
 
+	@Test(expected = CustomerNotFoundException.class) 
+	public void noCustomerByIdOnUpdate() { 
+		given(this.repository.findById(anyLong())).willReturn(null);
+		service.updateCustomer(mockCustomerRequest());
+	}
+	
+	@Test(expected = CustomerNotFoundException.class) 
+	public void noCustomerByIdOnDelete() { 
+		given(this.repository.findById(anyLong())).willReturn(null);
+		service.deleteCustomer(anyLong());
+	}
+	
 	private Customer mockCustomerObject() {
 		Customer customer = new Customer();
 		customer.setId(1L);
@@ -105,6 +126,8 @@ public class CustomerServiceTests {
 		
 	private CustomerRequest mockCustomerRequest() {
 		CustomerRequest customer = new CustomerRequest();
+		//code coverage --
+		customer.setCustomerId(1L);
 		customer.setFirstName("TEST_FIRST_REQ");
 		customer.setLastName("TEST_LAST_REQ");
 		return customer;

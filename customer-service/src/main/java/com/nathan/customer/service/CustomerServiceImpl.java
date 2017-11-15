@@ -67,14 +67,37 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		Customer entity = toEntity(request);
 		customerRepository.save(entity);
-		//Link selfLink = linkTo(CustomerServiceResource.class).slash(entity.getId()).withSelfRel();
+		Link selfLink = linkTo(CustomerServiceResource.class).slash(entity.getId()).withSelfRel();
 		CustomerResponse response = toResponse(entity);
-		//response.add(selfLink);
+		response.add(selfLink);
 		return response;
 	}
 	
 
 	public Customer toEntity(final CustomerRequest customer) {
 		return modelMapper.map(customer, Customer.class);
+	}
+
+	@Override
+	public void updateCustomer(CustomerRequest request) {
+		
+		Optional<Customer> customer = Optional.ofNullable(customerRepository.findById(request.getCustomerId()));
+		 
+		customer.ifPresent(p -> {
+					p.setFirstName(request.getFirstName());
+					p.setLastName(request.getLastName());
+					customerRepository.save(p);
+				});
+		customer.orElseThrow(() -> new CustomerNotFoundException(request.getCustomerId()));
+		
+	}
+
+	@Override
+	public void deleteCustomer(Long id) {
+	
+		Optional<Customer> customer = Optional.ofNullable(customerRepository.findById(id));
+		 
+		customer.ifPresent(p -> customerRepository.delete(p));
+		customer.orElseThrow(() -> new CustomerNotFoundException(id));
 	}
 }

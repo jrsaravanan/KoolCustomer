@@ -29,4 +29,16 @@ public interface CustomerService {
 	 */
 	public CustomerResponse saveCustomer(CustomerRequest request);
 	
+	/**
+	 * update customer
+	 * @param request
+	 */
+	public void updateCustomer(CustomerRequest request);
+
+	/**
+	 * delete customer
+	 * @param id
+	 * @return
+	 */
+	public void deleteCustomer(Long id);
 }
