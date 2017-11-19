@@ -1,9 +1,11 @@
-package com.nathan.customer.response;
+package com.nathan.customer.dto;
 
-public class CustomerResponse extends DefaultRespose {
+public class CustomerRequest {
 
+	private Long customerId;
+	
 	private String firstName;
-	private String  lastName;
+	private String lastName;
 	
 	public String getFirstName() {
 		return firstName;
@@ -19,6 +21,14 @@ public class CustomerResponse extends DefaultRespose {
 	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 	
 	

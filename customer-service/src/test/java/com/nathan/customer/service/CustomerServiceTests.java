@@ -4,15 +4,17 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.mock;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,19 +22,22 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.nathan.customer.config.ApplicationConfig;
+import com.nathan.customer.dto.CustomerRequest;
+import com.nathan.customer.dto.CustomerResponse;
 import com.nathan.customer.entity.Customer;
 import com.nathan.customer.exception.CustomerNotFoundException;
 import com.nathan.customer.repository.CustomerRepository;
-import com.nathan.customer.response.CustomerResponse;
+import com.nathan.customer.test.conf.CustomerApplicationTestConf;
 
 @ActiveProfiles("test")
 @TestPropertySource("classpath:application-test.yml")
 @RunWith(SpringRunner.class)
-@SpringBootTest (classes = { CustomerServiceImpl.class , ApplicationConfig.class} )
+@SpringBootTest (classes = { CustomerServiceImpl.class , CustomerApplicationTestConf.class} )
 public class CustomerServiceTests {
 
 
+	public static final Logger LOGGER = LoggerFactory.getLogger(CustomerServiceTests.class);
+	
 	@MockBean
 	private CustomerRepository repository;
 	
@@ -71,12 +76,44 @@ public class CustomerServiceTests {
 
 	}
 	
+	@Test
+	public void testSaveCustomerRequest() {
+		given(this.repository.save(any(Customer.class))).willReturn(mockCustomerObject());
+		CustomerResponse response = service.saveCustomer(mockCustomerRequest());
+		LOGGER.info("Response id -- {} --- " , response.getId());
+		assertThat(response.getFirstName(), equalTo("TEST_FIRST_REQ"));
+	}
+	
+	@Test
+	public void testUpdateCustomerRequest() {
+		given(this.repository.findById(anyLong())).willReturn(mockCustomerObject());
+		service.updateCustomer(mockCustomerRequest());
+	}
+	
+	@Test
+	public void testDeleteCustomerRequest() {
+		given(this.repository.findById(anyLong())).willReturn(mockCustomerObject());
+		service.deleteCustomer(anyLong());
+	}
+	
 	@Test(expected = CustomerNotFoundException.class) 
-	public void empty() { 
+	public void noCustomerFound() { 
 		given(this.repository.findById(anyLong())).willReturn(null);
 		service.getCustomer(10L);
 	}
 
+	@Test(expected = CustomerNotFoundException.class) 
+	public void noCustomerByIdOnUpdate() { 
+		given(this.repository.findById(anyLong())).willReturn(null);
+		service.updateCustomer(mockCustomerRequest());
+	}
+	
+	@Test(expected = CustomerNotFoundException.class) 
+	public void noCustomerByIdOnDelete() { 
+		given(this.repository.findById(anyLong())).willReturn(null);
+		service.deleteCustomer(anyLong());
+	}
+	
 	private Customer mockCustomerObject() {
 		Customer customer = new Customer();
 		customer.setId(1L);
@@ -85,4 +122,15 @@ public class CustomerServiceTests {
 		return customer;
 	}
 	
+	
+		
+	private CustomerRequest mockCustomerRequest() {
+		CustomerRequest customer = new CustomerRequest();
+		//code coverage --
+		customer.setCustomerId(1L);
+		customer.setFirstName("TEST_FIRST_REQ");
+		customer.setLastName("TEST_LAST_REQ");
+		return customer;
+	}
 }
+

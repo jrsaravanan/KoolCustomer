@@ -17,7 +17,7 @@ include::{snippets}\ping\curl-request.adoc[]
 include::{snippets}/ping/http-response.adoc[]
 
 
-== Customers 
+== Retrive ALL Customers 
 
  
 .request 
@@ -39,3 +39,38 @@ include::{snippets}\customer-id\curl-request.adoc[]
 
 .response
 include::{snippets}/customer-id/http-response.adoc[]
+
+
+== Add Customer 
+
+
+.request 
+include::{snippets}\customers-save\http-request.adoc[]
+include::{snippets}\customers-save\curl-request.adoc[]
+
+
+.response
+include::{snippets}/customers-save/http-response.adoc[]
+
+
+== Update Customer 
+
+
+.request 
+include::{snippets}\customers-update\http-request.adoc[]
+include::{snippets}\customers-update\curl-request.adoc[]
+
+
+.response
+include::{snippets}/customers-update/http-response.adoc[]
+
+== Delet Customer 
+
+
+.request 
+include::{snippets}\delete\http-request.adoc[]
+include::{snippets}\delete\curl-request.adoc[]
+
+
+.response
+include::{snippets}/customers-update/http-response.adoc[]
