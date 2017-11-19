@@ -45,18 +45,15 @@ public class CustomerServiceTests {
 	private CustomerService service;
 	
 	 
-	 
 	@Test
-	public void testGetCustomerById() {
-		
+	public void shouldReturnCustomerById() {
 		given(this.repository.findById(anyLong())).willReturn(mock(Customer.class));
 		CustomerResponse response = service.getCustomer(10L);
 		assertThat(response, notNullValue());
-		
 	}
 	
 	@Test
-	public void testGetCustomerReponse() {
+	public void verifyCustomerResponse() {
 		
 		given(this.repository.findById(anyLong())).willReturn(mockCustomerObject());
 		CustomerResponse response = service.getCustomer(10L);
@@ -66,7 +63,7 @@ public class CustomerServiceTests {
 	}
 	
 	@Test
-	public void testGetAllCustomerReponse() {
+	public void shouldReturnListOfCustomers() {
 
 		List<Customer> collection = Arrays.asList(mockCustomerObject());
 		given(this.repository.findAll()).willReturn(collection);
@@ -77,39 +74,39 @@ public class CustomerServiceTests {
 	}
 	
 	@Test
-	public void testSaveCustomerRequest() {
+	public void shouldPersistGivenCustomer() {
 		given(this.repository.save(any(Customer.class))).willReturn(mockCustomerObject());
 		CustomerResponse response = service.saveCustomer(mockCustomerRequest());
-		LOGGER.info("Response id -- {} --- " , response.getId());
+		LOGGER.info("Response id -- {} --- " , response.getId().getHref());
 		assertThat(response.getFirstName(), equalTo("TEST_FIRST_REQ"));
 	}
 	
 	@Test
-	public void testUpdateCustomerRequest() {
+	public void shouldUpdateCustomer() {
 		given(this.repository.findById(anyLong())).willReturn(mockCustomerObject());
 		service.updateCustomer(mockCustomerRequest());
 	}
 	
 	@Test
-	public void testDeleteCustomerRequest() {
+	public void shouldDeleteCustomerById() {
 		given(this.repository.findById(anyLong())).willReturn(mockCustomerObject());
 		service.deleteCustomer(anyLong());
 	}
 	
 	@Test(expected = CustomerNotFoundException.class) 
-	public void noCustomerFound() { 
+	public void shouldThrowExceptionWhenCustomerNotFound() { 
 		given(this.repository.findById(anyLong())).willReturn(null);
 		service.getCustomer(10L);
 	}
 
 	@Test(expected = CustomerNotFoundException.class) 
-	public void noCustomerByIdOnUpdate() { 
+	public void shouldThrowExceptionCustomerNotFoundOnUpdate() { 
 		given(this.repository.findById(anyLong())).willReturn(null);
 		service.updateCustomer(mockCustomerRequest());
 	}
 	
 	@Test(expected = CustomerNotFoundException.class) 
-	public void noCustomerByIdOnDelete() { 
+	public void shouldThrowExceptionCustomerNotFoundOnDelete() { 
 		given(this.repository.findById(anyLong())).willReturn(null);
 		service.deleteCustomer(anyLong());
 	}
@@ -126,7 +123,7 @@ public class CustomerServiceTests {
 		
 	private CustomerRequest mockCustomerRequest() {
 		CustomerRequest customer = new CustomerRequest();
-		//code coverage --
+		//code coverage -- :D
 		customer.setCustomerId(1L);
 		customer.setFirstName("TEST_FIRST_REQ");
 		customer.setLastName("TEST_LAST_REQ");
