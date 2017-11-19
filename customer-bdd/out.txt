@@ -1,0 +1,169 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building customer-bdd 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.6.1:clean (default-clean) @ customer-bdd ---
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ customer-bdd ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ customer-bdd ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to D:\Workarea\KoolCustomer\customer-bdd\target\classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ customer-bdd ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ customer-bdd ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 2 source files to D:\Workarea\KoolCustomer\customer-bdd\target\test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.19.1:test (default-test) @ customer-bdd ---
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.nathan.customer.CustomerBddApplicationTests
+23:36:47.995 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Get connection for route {}->http://localhost:8080
+23:36:48.018 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:8080
+23:36:48.042 [main] DEBUG org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: ignoreCookies
+23:36:48.044 [main] DEBUG org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+23:36:48.044 [main] DEBUG org.apache.http.client.protocol.RequestTargetAuthentication - Target auth state: UNCHALLENGED
+23:36:48.045 [main] DEBUG org.apache.http.client.protocol.RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+23:36:48.045 [main] DEBUG org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+23:36:48.045 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Sending request: GET /v1.0/customers/ping?name=sai HTTP/1.1
+23:36:48.046 [main] DEBUG org.apache.http.wire -  >> "GET /v1.0/customers/ping?name=sai HTTP/1.1[\r][\n]"
+23:36:48.048 [main] DEBUG org.apache.http.wire -  >> "Accept: */*[\r][\n]"
+23:36:48.048 [main] DEBUG org.apache.http.wire -  >> "Content-Length: 0[\r][\n]"
+23:36:48.049 [main] DEBUG org.apache.http.wire -  >> "Host: localhost:8080[\r][\n]"
+23:36:48.049 [main] DEBUG org.apache.http.wire -  >> "Connection: Keep-Alive[\r][\n]"
+23:36:48.049 [main] DEBUG org.apache.http.wire -  >> "User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_77)[\r][\n]"
+23:36:48.049 [main] DEBUG org.apache.http.wire -  >> "Accept-Encoding: gzip,deflate[\r][\n]"
+23:36:48.050 [main] DEBUG org.apache.http.wire -  >> "[\r][\n]"
+23:36:48.051 [main] DEBUG org.apache.http.headers - >> GET /v1.0/customers/ping?name=sai HTTP/1.1
+23:36:48.051 [main] DEBUG org.apache.http.headers - >> Accept: */*
+23:36:48.052 [main] DEBUG org.apache.http.headers - >> Content-Length: 0
+23:36:48.052 [main] DEBUG org.apache.http.headers - >> Host: localhost:8080
+23:36:48.052 [main] DEBUG org.apache.http.headers - >> Connection: Keep-Alive
+23:36:48.052 [main] DEBUG org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.5.3 (Java/1.8.0_77)
+23:36:48.052 [main] DEBUG org.apache.http.headers - >> Accept-Encoding: gzip,deflate
+23:36:48.062 [main] DEBUG org.apache.http.wire -  << "HTTP/1.1 200 [\r][\n]"
+23:36:48.064 [main] DEBUG org.apache.http.wire -  << "X-Application-Context: application[\r][\n]"
+23:36:48.065 [main] DEBUG org.apache.http.wire -  << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+23:36:48.065 [main] DEBUG org.apache.http.wire -  << "Transfer-Encoding: chunked[\r][\n]"
+23:36:48.065 [main] DEBUG org.apache.http.wire -  << "Date: Sun, 19 Nov 2017 04:36:48 GMT[\r][\n]"
+23:36:48.065 [main] DEBUG org.apache.http.wire -  << "[\r][\n]"
+23:36:48.066 [main] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 
+23:36:48.066 [main] DEBUG org.apache.http.headers - << HTTP/1.1 200 
+23:36:48.066 [main] DEBUG org.apache.http.headers - << X-Application-Context: application
+23:36:48.066 [main] DEBUG org.apache.http.headers - << Content-Type: application/json;charset=UTF-8
+23:36:48.066 [main] DEBUG org.apache.http.headers - << Transfer-Encoding: chunked
+23:36:48.066 [main] DEBUG org.apache.http.headers - << Date: Sun, 19 Nov 2017 04:36:48 GMT
+23:36:48.073 [main] DEBUG org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive indefinitely
+23:36:48.105 [main] DEBUG io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsing response as: application/json;charset=UTF-8
+23:36:48.106 [main] DEBUG io.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsed data to instance of: class org.apache.http.conn.EofSensorInputStream
+23:36:48.177 [main] DEBUG org.apache.http.wire -  << "19[\r][\n]"
+23:36:48.177 [main] DEBUG org.apache.http.wire -  << "{"message":"Hello, sai!"}"
+23:36:48.178 [main] DEBUG org.apache.http.wire -  << "[\r][\n]"
+23:36:48.178 [main] DEBUG org.apache.http.wire -  << "0[\r][\n]"
+23:36:48.178 [main] DEBUG org.apache.http.wire -  << "[\r][\n]"
+23:36:48.178 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Releasing connection org.apache.http.impl.conn.ManagedClientConnectionImpl@367795c7
+23:36:48.178 [main] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Connection can be kept alive indefinitely
+{
+    "message": "Hello, sai!"
+}
+23:36:48.234 [main] INFO com.nathan.customer.ping.PingStepsDef - response: {
+    "message": "Hello, sai!"
+}  
+
+1 Scenarios (1 passed)
+3 Steps (3 passed)
+0m2.418s
+
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.721 sec <<< FAILURE! - in com.nathan.customer.CustomerBddApplicationTests
+Test mechanism  Time elapsed: 0.087 sec  <<< ERROR!
+java.lang.NullPointerException
+
+
+Results :
+
+Tests in error: 
+  null
+
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 7.887 s
+[INFO] Finished at: 2017-11-18T23:36:49-05:00
+[INFO] Final Memory: 29M/221M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2.19.1:test (default-test) on project customer-bdd: Execution default-test of goal org.apache.maven.plugins:maven-surefire-plugin:2.19.1:test failed: There was an error in the forked process
+[ERROR] org.apache.maven.surefire.testset.TestSetFailedException: java.lang.NullPointerException
+[ERROR] 	at org.apache.maven.surefire.common.junit4.JUnit4RunListener.rethrowAnyTestMechanismFailures(JUnit4RunListener.java:209)
+[ERROR] 	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:169)
+[ERROR] 	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:290)
+[ERROR] 	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:242)
+[ERROR] 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:121)
+[ERROR] Caused by: java.lang.NullPointerException
+[ERROR] 	at io.qameta.allure.junit4.AllureJunit4.lambda$getAnnotationsOnClass$3(AllureJunit4.java:208)
+[ERROR] 	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
+[ERROR] 	at java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:193)
+[ERROR] 	at java.util.stream.Streams$StreamBuilderImpl.forEachRemaining(Streams.java:419)
+[ERROR] 	at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:481)
+[ERROR] 	at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:471)
+[ERROR] 	at java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:708)
+[ERROR] 	at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+[ERROR] 	at java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:499)
+[ERROR] 	at io.qameta.allure.junit4.AllureJunit4.getAnnotationsOnClass(AllureJunit4.java:210)
+[ERROR] 	at io.qameta.allure.junit4.AllureJunit4.getLinks(AllureJunit4.java:146)
+[ERROR] 	at io.qameta.allure.junit4.AllureJunit4.testStarted(AllureJunit4.java:88)
+[ERROR] 	at org.junit.runner.notification.RunNotifier$3.notifyListener(RunNotifier.java:121)
+[ERROR] 	at org.junit.runner.notification.RunNotifier$SafeNotifier.run(RunNotifier.java:72)
+[ERROR] 	at org.junit.runner.notification.RunNotifier.fireTestStarted(RunNotifier.java:118)
+[ERROR] 	at org.apache.maven.surefire.common.junit4.Notifier.fireTestStarted(Notifier.java:100)
+[ERROR] 	at cucumber.runtime.junit.JUnitReporter$EachTestNotifier.fireTestStarted(JUnitReporter.java:256)
+[ERROR] 	at cucumber.runtime.junit.JUnitReporter.handleTestCaseStarted(JUnitReporter.java:87)
+[ERROR] 	at cucumber.runtime.junit.JUnitReporter$1.receive(JUnitReporter.java:34)
+[ERROR] 	at cucumber.runtime.junit.JUnitReporter$1.receive(JUnitReporter.java:30)
+[ERROR] 	at cucumber.runner.EventBus.send(EventBus.java:28)
+[ERROR] 	at cucumber.api.TestCase.run(TestCase.java:55)
+[ERROR] 	at cucumber.runner.Runner.runPickle(Runner.java:80)
+[ERROR] 	at cucumber.runtime.junit.PickleRunners$NoStepDescriptions.run(PickleRunners.java:140)
+[ERROR] 	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:68)
+[ERROR] 	at cucumber.runtime.junit.FeatureRunner.runChild(FeatureRunner.java:23)
+[ERROR] 	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+[ERROR] 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+[ERROR] 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+[ERROR] 	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+[ERROR] 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+[ERROR] 	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+[ERROR] 	at cucumber.runtime.junit.FeatureRunner.run(FeatureRunner.java:73)
+[ERROR] 	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:99)
+[ERROR] 	at cucumber.api.junit.Cucumber.runChild(Cucumber.java:41)
+[ERROR] 	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+[ERROR] 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+[ERROR] 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+[ERROR] 	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+[ERROR] 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+[ERROR] 	at cucumber.api.junit.Cucumber$1.evaluate(Cucumber.java:108)
+[ERROR] 	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+[ERROR] 	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:367)
+[ERROR] 	at org.apache.maven.surefire.junit4.JUnit4Provider.executeWithRerun(JUnit4Provider.java:274)
+[ERROR] 	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:238)
+[ERROR] 	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:161)
+[ERROR] 	... 3 more
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
