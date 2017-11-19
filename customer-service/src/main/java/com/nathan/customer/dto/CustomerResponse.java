@@ -2,6 +2,7 @@ package com.nathan.customer.dto;
 
 public class CustomerResponse extends DefaultRespose  {
 
+	private Long customerId;
 	public String firstName;
 	public String  lastName;
 	
@@ -19,6 +20,14 @@ public class CustomerResponse extends DefaultRespose  {
 	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Long getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 	
 	

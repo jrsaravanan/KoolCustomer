@@ -22,17 +22,17 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.nathan.customer.config.ApplicationConfig;
 import com.nathan.customer.dto.CustomerRequest;
 import com.nathan.customer.dto.CustomerResponse;
 import com.nathan.customer.entity.Customer;
 import com.nathan.customer.exception.CustomerNotFoundException;
 import com.nathan.customer.repository.CustomerRepository;
+import com.nathan.customer.test.conf.CustomerApplicationTestConf;
 
 @ActiveProfiles("test")
 @TestPropertySource("classpath:application-test.yml")
 @RunWith(SpringRunner.class)
-@SpringBootTest (classes = { CustomerServiceImpl.class , ApplicationConfig.class} )
+@SpringBootTest (classes = { CustomerServiceImpl.class , CustomerApplicationTestConf.class} )
 public class CustomerServiceTests {
 
 

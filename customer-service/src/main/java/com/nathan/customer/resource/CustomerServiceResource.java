@@ -65,7 +65,7 @@ public class CustomerServiceResource {
 		CustomerResponse responseBody = customerService.saveCustomer(request);
 		
 		HttpHeaders headers = new HttpHeaders();
-		headers.set("Location", responseBody.getId().toString());
+		headers.set(HttpHeaders.LOCATION, responseBody.getId().getHref());
 		return  new ResponseEntity<>(responseBody , headers , HttpStatus.CREATED);
 	}
 	

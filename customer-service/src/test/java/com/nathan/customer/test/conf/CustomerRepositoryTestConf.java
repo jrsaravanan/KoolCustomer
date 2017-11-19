@@ -6,7 +6,9 @@ import javax.sql.DataSource;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -17,12 +19,12 @@ import org.springframework.transaction.PlatformTransactionManager;
 import com.nathan.customer.dto.CustomerResponse;
 import com.nathan.customer.entity.Customer;
 
-// Almost similar to CustomerRepositoryTestConf 
-// not enabling repo and scanning repositories , minimal implementation 
-// TODO : Refactor , create base class  for CustomerRepositoryTestConf
+
+@EnableJpaRepositories(basePackages ={ "com.nathan.customer.repository" })
+@ComponentScan( basePackages = { "com.nathan.customer.entity"  , "com.nathan.customer.service" , "com.nathan.customer.resource"})
 @Configuration
-public class CustomerApplicationTestConf {
-	 
+public class CustomerRepositoryTestConf {
+	
 	 @Bean
 	  public DataSource dataSource() {
 
@@ -30,20 +32,21 @@ public class CustomerApplicationTestConf {
 	    return builder.setType(EmbeddedDatabaseType.H2).build();
 	  }
 
-	 @Bean
+	  @Bean
 	  public EntityManagerFactory entityManagerFactory() {
-		    HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		    vendorAdapter.setGenerateDdl(true);
 
-		    LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-		    factory.setJpaVendorAdapter(vendorAdapter);
-		    factory.setPackagesToScan("com.nathan.customer.entity");
-		    factory.setDataSource(dataSource());
-		    factory.afterPropertiesSet();
+	    HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+	    vendorAdapter.setGenerateDdl(true);
 
-		    return factory.getObject();
+	    LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+	    factory.setJpaVendorAdapter(vendorAdapter);
+	    factory.setPackagesToScan("com.nathan.customer.entity");
+	    factory.setDataSource(dataSource());
+	    factory.afterPropertiesSet();
+
+	    return factory.getObject();
 	  }
-	 
+
 	  @Bean
 	  public PlatformTransactionManager transactionManager() {
 
