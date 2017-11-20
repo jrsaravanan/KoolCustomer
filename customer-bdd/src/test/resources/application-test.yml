@@ -1,0 +1,8 @@
+#spring.jpa.hibernate.ddl-auto=update
+
+logging:
+ level: DEBUG
+
+
+
+test: test_valeu    
