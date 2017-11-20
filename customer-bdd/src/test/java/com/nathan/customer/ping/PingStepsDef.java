@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -44,7 +45,10 @@ public class PingStepsDef  {
     
     @Given("^the client send (.*) message$")
     public void the_client_send_sai_message(String message) throws Throwable {
-    	request = given().queryParam("name", message);
+    	request = given()
+    			.accept(ContentType.JSON)
+				.contentType(ContentType.JSON)
+    			.queryParam("name", message);
     }
 
     @When("^the client GET ping$")
