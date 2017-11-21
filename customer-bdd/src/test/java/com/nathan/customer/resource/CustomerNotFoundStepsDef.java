@@ -1,7 +1,6 @@
 package com.nathan.customer.resource;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.notNullValue;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,6 @@ public class CustomerNotFoundStepsDef {
 	private RequestSpecification request;
 	private String CUSTOMERS_URI = "http://localhost:8080/v1.0/customers";
 
-	
 
 	@Given("^client provide  customerId (\\d+)$")
 	public void client_provide_customerId(int customerId) throws Throwable {

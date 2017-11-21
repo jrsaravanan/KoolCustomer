@@ -1,10 +1,9 @@
 Feature: Retrieve customers 
-	As a customer service client should have provision to retrieve customer details , has to provide correct response HTTP codes when it is NOT available
-	Retrieve all available customers
-	Retrieve customer by id
-	Retrieve customer by invalid id 
+	As a customer service client should have provision to retrieve customer details has to provide correct response HTTP codes when it is NOT available.
+	Client has to use   
+	
    
-   Scenario: Client should receive all available customer
+   Scenario: Retrieve all available customers
 	   When customer service client call /customers resource
 	   Then customer should receive List of customers
 	   And client should receive HTTP status code 200
