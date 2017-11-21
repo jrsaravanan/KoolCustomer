@@ -3,18 +3,11 @@
 Behavior Driver Test Suite for Customer Service.  
 
 
-------------------------------------------------------------
-
-
-
 ## Build Using 
 Cucumber 
 RestAssured
 Allure Report  
  
- 
-------------------------------------------------------------
-
 
 ## To Run
 ``` sh
