@@ -1,5 +1,4 @@
 pipeline {
-  
   agent {
     docker {
       image 'maven:3-alpine'
@@ -8,23 +7,20 @@ pipeline {
     
   }
   stages {
-    
     stage('Build') {
       steps {
         sh 'mvn -B -DskipTests clean install'
       }
     }
-   
     stage('Test') {
       steps {
         sh 'mvn install -fae'
       }
     }
-       
+    stage('Release') {
+      steps {
+        sh 'mvn -B versions:set -DgenerateBackupPoms=false -DnewVersion=${v}'
+      }
+    }
   }
-}
-
-def version() {
-    def matcher = readFile('pom.xml') =~ '<version>(\\d*)\\.(\\d*)\\.(\\d*)(-SNAPSHOT)*</version>'
-    matcher ? matcher[0] : null
 }
