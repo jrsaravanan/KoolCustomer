@@ -40,7 +40,12 @@ pipeline {
         sh "git push origin " + env.BRANCH_NAME
         sh "git push origin v${v}"
       }
-}
+    }
     
   }
+}
+
+def version() {
+    def matcher = readFile('pom.xml') =~ '<version>(\\d*)\\.(\\d*)\\.(\\d*)(-SNAPSHOT)*</version>'
+    matcher ? matcher[0] : null
 }
