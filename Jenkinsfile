@@ -14,7 +14,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh 'mvn -fae install'
+        sh 'mvn install -fae'
       }
     }
     
