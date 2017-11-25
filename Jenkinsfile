@@ -17,9 +17,9 @@ pipeline {
         sh 'mvn install -fae'
       }
     }
-    stage('Deploy') {
+    stage('Package') {
       steps {
-          sh 'mvn clean package'         
+        sh 'mvn clean package'
       }
     }
   }
