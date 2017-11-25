@@ -29,9 +29,9 @@ pipeline {
     }
 
     stage('Integeration Test') {
-      steps {
-        sh 'cd customer-bdd'
-        sh 'mvn clean install'
+      steps { 
+        sh 'cd customer-bdd; mvn clean install'
+       // sh 'mvn clean install'
 
       }
     }
