@@ -26,7 +26,7 @@ public class NewCustomerStepsDef {
 
 	public Response response;
 	public RequestSpecification request;
-	public String CUSTOMERS_URI = "http://localhost:8080/v1.0/customers";
+	public String CUSTOMERS_URI = "http://localhost:8090/v1.0/customers";
 
 	@When("^client call /customers with POST method$")
 	public void client_call_customers_with_POST_method() throws Throwable {

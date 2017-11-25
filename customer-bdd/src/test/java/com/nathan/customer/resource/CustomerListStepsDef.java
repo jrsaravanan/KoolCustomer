@@ -19,7 +19,7 @@ public class CustomerListStepsDef {
 
 	private Response response;
 	private RequestSpecification request;
-	private String CUSTOMERS_URI = "http://localhost:8080/v1.0/customers";
+	private String CUSTOMERS_URI = "http://localhost:8090/v1.0/customers";
 
 	
 

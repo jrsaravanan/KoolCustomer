@@ -20,10 +20,18 @@ pipeline {
       }
     }
 
-    stage('Integeration Test') {
+    stage('Integeration Init') {
       steps {
         sh 'docker run -d --name mysql-server -e MYSQL_DATABASE="customers" -e MYSQL_USER="appuser" -e MYSQL_PASSWORD="appuser"  -e MYSQL_ROOT_PASSWORD="appuser" -e MYSQL_ROOT_HOST="192.168.10.168" -p 3306:3306 mysql:latest '
-        sh 'java -jar -DCUSTOMER_APP_USER=root -DCUSTOMER_APP_PASSWORD=appuser  -Dspring.port=8090 customer-service/target/customer-service-0.0.1-SNAPSHOT.jar &'
+        sh 'java -jar -DCUSTOMER_APP_USER=root -DCUSTOMER_APP_PASSWORD=appuser  -Dspring.port=8090 customer-service/target/customer-service-0.0.1-SNAPSHOT.jar'
+
+      }
+    }
+
+    stage('Integeration Test') {
+      steps {
+        sh 'cd cusomer-bdd'
+        sh 'mvn clean install'
 
       }
     }
