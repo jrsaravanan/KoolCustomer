@@ -1,9 +1,10 @@
 pipeline {
-  agent {
+  agent any 
+    /*{
     docker {
       image 'maven:3-alpine'
       args '-v /root/.m2:/root/.m2'
-    }
+    }*/
     
   }
   stages {
@@ -17,9 +18,10 @@ pipeline {
         sh 'mvn install -fae'
       }
     }
-    stage('Package') {
+    stage('TestRun') {
       steps {
-        sh 'mvn clean package'
+        sh 'docker run -d --name mysql-server -v /mount_dir_on_host:/var/lib/mysql -e MYSQL_DATABASE="customer" -e MYSQL_ROOT_PASSWORD=appuser mysql:latest '
+        sh 'java -DCUSTOMER_APP_USER=root -DCUSTOMER_APP_PASSWORD=appuser -jar customer-service/target/customer-service-0.0.1-SNAPSHOT.jar'
       }
     }
   }
