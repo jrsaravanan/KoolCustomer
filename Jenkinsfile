@@ -30,7 +30,7 @@ pipeline {
 
     stage('Integeration Test') {
       steps {
-        sh 'cd cusomer-bdd'
+        sh 'cd customer-bdd'
         sh 'mvn clean install'
 
       }
