@@ -5,6 +5,8 @@ import static io.restassured.RestAssured.given;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nathan.customer.utils.TestUtils;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -18,7 +20,7 @@ public class CustomerNotFoundStepsDef {
 
 	private Response response;
 	private RequestSpecification request;
-	private String CUSTOMERS_URI = "http://localhost:8090/v1.0/customers";
+	private String CUSTOMERS_URI = TestUtils.getCustomerUri();
 
 
 	@Given("^client provide  customerId (\\d+)$")
