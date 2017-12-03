@@ -6,6 +6,8 @@ import static org.hamcrest.Matchers.equalTo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nathan.customer.utils.TestUtils;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -19,7 +21,7 @@ public class PingStepsDef  {
 	
 	private Response response;
 	private RequestSpecification request;
-    private String ENDPOINT_GET_PING = "http://localhost:8080/v1.0/customers/ping";
+    private String ENDPOINT_GET_PING = TestUtils.getCustomerUri();
     
 	
 	/*public PingStepsDef() {
@@ -53,7 +55,7 @@ public class PingStepsDef  {
 
     @When("^the client GET ping$")
     public void the_client_GET_ping() throws Throwable {
-    	response = request.when().get(ENDPOINT_GET_PING);
+    	response = request.when().get(ENDPOINT_GET_PING + "/ping");
 		LOGGER.info("response: {}  " , response.prettyPrint());
     }
 
