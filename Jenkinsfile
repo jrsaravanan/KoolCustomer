@@ -35,21 +35,11 @@ pipeline {
     }
 
     stage('Integeration Test') {
-
       when { branch 'master' }
-
-      try {
-           steps { 
-             sh 'cd customer-bdd; mvn clean install'       
-       }
-      } catch (Exception e) {
-
-        throw e;
-      } finally {
-
-      }
-     
-    }
+      steps { 
+          sh 'cd customer-bdd; mvn clean install'       
+        }
+   }
 
     stage ('Clean') {
 
