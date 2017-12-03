@@ -34,22 +34,29 @@ pipeline {
 
     stage('Integeration Test') {
 
-       when { branch 'master' }
+      when { branch 'master' }
       steps { 
         sh 'cd customer-bdd; mvn clean install'
        // sh 'mvn clean install'
-
-      }
+       }
     }
 
+    stage ('Clean') {
+
+      when { branch 'master' }
+      steps {
+        sh 'docker stop mysql-server'
+        sh 'docker rm mysql-server'
+      }
+
+    }
     
   }
 
   post {
     
     always {
-     sh 'docker stop mysql-server'
-     sh 'docker rm mysql-server'
+     
     }
   }
   
