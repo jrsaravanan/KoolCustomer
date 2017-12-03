@@ -46,9 +46,10 @@ pipeline {
   }
 
   post {
+    when { branch 'master' }
     always {
-     sh 'sudo docker stop mysql-server'
-     sh 'sudo docker rm mysql-server'
+     sh 'docker stop mysql-server'
+     sh 'docker rm mysql-server'
     }
   }
   
