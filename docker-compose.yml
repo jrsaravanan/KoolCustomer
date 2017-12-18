@@ -1,0 +1,45 @@
+version: '3'
+services:
+  customerdb:
+   image: mysql:5.6
+   container_name: customerdb
+   environment:
+     MYSQL_ROOT_PASSWORD: admin
+     MYSQL_DATABASE: customers
+     MYSQL_USER: appuser
+     MYSQL_PASSWORD: appuser  
+     MYSQL_ROOT_PASSWORD: appuser     
+   ports:
+     - 3306:3306
+  
+  admin-ui:
+    image: jrsaravanan/customer-admin
+    container_name: admin-ui
+    ports: 
+      -  9000:9000 
+   
+  discovery:
+   image: jrsaravanan/customer-discovery
+   container_name: discovery
+   environment:
+    CUSTOMER_ADMIN_URI: http://admin-ui:9000/
+
+  customer-service:
+   image: jrsaravanan/customer-service
+   container_name: customer-service 
+   environment:
+    CUSTOMER_APP_USER: appuser
+    CUSTOMER_APP_PASSWORD: appuser
+    CUSTOMER_DB_URI: customerdb
+    CUSTOMER_ADMIN_URI: http://admin-ui:9000/
+   ports:
+    - 8080
+   depends_on:
+    - customerdb
+    - admin-ui
+    - discovery 
+
+
+
+  
+
