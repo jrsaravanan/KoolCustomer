@@ -23,15 +23,20 @@ services:
    container_name: discovery
    environment:
     CUSTOMER_ADMIN_URI: http://admin-ui:9000/
-
+   ports:
+    - 8761
+   depends_on:
+    - admin-ui
+   
   customer-service:
    image: jrsaravanan/customer-service
-   container_name: customer-service 
+   #container_name: customer-service 
    environment:
     CUSTOMER_APP_USER: appuser
     CUSTOMER_APP_PASSWORD: appuser
     CUSTOMER_DB_URI: customerdb
     CUSTOMER_ADMIN_URI: http://admin-ui:9000/
+    DISCOVERY_URI: http://discovery:8761/eureka
    ports:
     - 8080
    depends_on:
