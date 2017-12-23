@@ -1,4 +1,7 @@
 version: '3'
+volumes:
+ dbdata:
+
 services:
   customerdb:
    image: mysql:5.6
@@ -11,6 +14,8 @@ services:
      MYSQL_ROOT_PASSWORD: appuser     
    ports:
      - 3306:3306
+   volumes:
+      - dbdata:/var/lib/mysql
   
   admin-ui:
     image: jrsaravanan/customer-admin

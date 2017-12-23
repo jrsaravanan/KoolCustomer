@@ -2,13 +2,22 @@
 
 # KoolCustomer
 
-A Microservice PoC
+A Microservice PoC. 
+
+Build Using
+* JDK 8
+* Spring Boot
+* Spring Admin
+* Eureka
+* Admin UI
+* Cucummber JVM
+* Rest Assured
+* REST Doc
 
 ## Build 
-JDK 8
-Spring Boot
-Spring Admin
-Eureka
+```
+$ .\mvn.install.sh
+$ docker-compose up
+```
 
-
-## TEST
+## 
