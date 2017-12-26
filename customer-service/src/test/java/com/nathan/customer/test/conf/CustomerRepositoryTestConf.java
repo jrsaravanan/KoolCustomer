@@ -16,6 +16,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.nathan.customer.dto.CustomerRequest;
 import com.nathan.customer.dto.CustomerResponse;
 import com.nathan.customer.entity.Customer;
 
@@ -57,9 +58,13 @@ public class CustomerRepositoryTestConf {
 	  
 	@Bean
 	public ModelMapper modelMapper() {
+
 		ModelMapper modelMapper = new ModelMapper();
 		TypeMap<Customer, CustomerResponse> typeMap = modelMapper.createTypeMap(Customer.class, CustomerResponse.class);
 		typeMap.addMapping(Customer::getId, CustomerResponse::setCustomerId);
+		typeMap.addMapping(Customer::getEmailId, CustomerResponse::setEmailId);
+		modelMapper.getConfiguration().setAmbiguityIgnored(true);
+		
 		return modelMapper;
 	}
 

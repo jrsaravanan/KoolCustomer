@@ -21,6 +21,16 @@ public class Customer {
 	
 	@Column(name = "LAST_NAME")
 	private String lastName;
+	
+	@Column(name ="SERVICE_TYPE")
+	private String serviceType;
+	
+	@Column(name ="AGE")
+	private int age;
+	
+	@Column(name = "email")
+	private String emailId;
+	
 
 	public Long getId() {
 		return id;
@@ -45,6 +55,29 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
- 
+
+	public String getServiceType() {
+		return serviceType;
+	}
+
+	public void setServiceType(String serviceType) {
+		this.serviceType = serviceType;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
 	
 }

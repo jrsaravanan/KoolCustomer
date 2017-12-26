@@ -127,6 +127,9 @@ public class CustomerServiceTests {
 		customer.setCustomerId(1L);
 		customer.setFirstName("TEST_FIRST_REQ");
 		customer.setLastName("TEST_LAST_REQ");
+		customer.setAge(100);
+		customer.setEmailId("test@test.com");
+		customer.setServiceType("SP");
 		return customer;
 	}
 }
