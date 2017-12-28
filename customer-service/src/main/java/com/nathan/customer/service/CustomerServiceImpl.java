@@ -76,6 +76,9 @@ public class CustomerServiceImpl implements CustomerService {
 		customer.ifPresent(p -> {
 					p.setFirstName(request.getFirstName());
 					p.setLastName(request.getLastName());
+					p.setAge(request.getAge());
+					p.setEmailId(request.getEmailId());
+					p.setServiceType(request.getServiceType());
 					customerRepository.save(p);
 				});
 		customer.orElseThrow(() -> new CustomerNotFoundException(request.getCustomerId()));
@@ -97,8 +100,8 @@ public class CustomerServiceImpl implements CustomerService {
         return response;
 	}
 	
-	private Customer toEntity(final CustomerRequest customer) {
-		return modelMapper.map(customer, Customer.class);
+	private Customer toEntity(final CustomerRequest request) {
+		return modelMapper.map(request, Customer.class);
 	}
 
 }

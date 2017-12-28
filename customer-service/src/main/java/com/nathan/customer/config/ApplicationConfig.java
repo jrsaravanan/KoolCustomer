@@ -18,6 +18,10 @@ public class ApplicationConfig {
 		ModelMapper modelMapper = new ModelMapper();
 		TypeMap<Customer, CustomerResponse> typeMap = modelMapper.createTypeMap(Customer.class, CustomerResponse.class);
 		typeMap.addMapping(Customer::getId, CustomerResponse::setCustomerId);
+		typeMap.addMapping(Customer::getEmailId, CustomerResponse::setEmailId);
+		
+		modelMapper.getConfiguration().setAmbiguityIgnored(true);
+		
 		return modelMapper;
 	}
 }

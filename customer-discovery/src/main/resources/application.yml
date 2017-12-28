@@ -1,14 +1,23 @@
 server:
-  port: ${PORT:9090}
+  port: ${PORT:8761}
 
 spring:
   application:
     name: Customer-Discovery-Service
+  boot:
+   admin:
+    url: ${CUSTOMER_ADMIN_URI:http://localhost:9000 }  
 
 logging:
   file: logs/customer-discovery-service.log
 
 eureka:
- client:
-  registerWithEureka: false
-  fetchRegistry: false
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+  server:
+    enableSelfPreservation: false
+
+management:
+  security:
+    enabled: false

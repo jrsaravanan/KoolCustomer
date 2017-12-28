@@ -81,8 +81,11 @@ public class CustomerServiceApplicationTests {
 			      .andExpect(jsonPath("$.firstName", is(response.getFirstName())))
 			      .andDo(
 			    	 document("customer-id",  responseFields (
-			    			 	fieldWithPath("firstName").description("First Name") ,
-			    			 	fieldWithPath("lastName").description("Last Name")
+			    			 	fieldWithPath("firstName").description("Customer First Name") ,
+			    			 	fieldWithPath("lastName").description("Customer Last Name"),
+			    			 	fieldWithPath("age").description("Customer Age"),
+			    			 	fieldWithPath("emailId").description("Customer Email Id "),
+			    			 	fieldWithPath("serviceType").description("Customer Service Type")
 			    			 )));
 
 	}
@@ -102,8 +105,11 @@ public class CustomerServiceApplicationTests {
 			      .andExpect(jsonPath("$[0].firstName", is(response.getFirstName())))
 			      .andDo(
 			    	 document("customers",  responseFields (
-			    			 	fieldWithPath("[].firstName").description("First Name") ,
-			    			 	fieldWithPath("[].lastName").description("Last Name")
+			    			 	fieldWithPath("[].firstName").description("Customer First Name") ,
+			    			 	fieldWithPath("[].lastName").description("Customer Last Name"),
+			    			 	fieldWithPath("[].age").description("Customer Age"),
+			    			 	fieldWithPath("[].emailId").description("Customer Email Id "),
+			    			 	fieldWithPath("[].serviceType").description("Customer Service Type")
 			    			 )));
 
 	}
@@ -154,6 +160,9 @@ public class CustomerServiceApplicationTests {
 		CustomerResponse response = new CustomerResponse();
 		response.setFirstName("TEST_FIRST_NAME");
 		response.setLastName("TEST_LAST_NAME");
+		response.setEmailId("test@test.com");
+		response.setAge(100);
+		response.setServiceType("SP");
 		return response;
 	}
 }
