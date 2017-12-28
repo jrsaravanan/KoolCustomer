@@ -3,7 +3,7 @@ logs/
 target/
 .mvn
 .settings
-
+.vscode
 
 #eclipse
 .classpath
