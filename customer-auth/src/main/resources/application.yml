@@ -1,0 +1,46 @@
+server:
+  port: ${PORT:8070}
+
+spring:
+  application:
+    name: Customer-Auth-Service
+  
+  security:
+   oauth2:
+    client:
+     registration:
+      google:
+       client-id: your-app-client-id
+       client-secret: your-app-client-secret    
+       
+  boot:
+   admin:
+    url: ${CUSTOMER_ADMIN_URI:http://localhost:9000 }
+  datasource:
+   initialize: ${INIT_DB:false}
+   url: jdbc:mysql://${AUTH_DB_URI:localhost:3306/auth}
+   username: ${AUTH_APP_USER:appuser}
+   password: ${AUTH_APP_PASSWORD:appuser}
+   driver-class-name: com.mysql.jdbc.Driver  
+  jpa:
+   hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+   hibernate.format_sql: true
+   show-sql: true
+
+management:
+ security:
+  enabled: false    
+
+logging:
+  file: logs/customer-auth-service.log
+  level.com.nathan: debug
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_URI:http://127.0.0.1:8761/eureka}
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${random.int}
+
+    
