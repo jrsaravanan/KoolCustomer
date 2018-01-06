@@ -3,6 +3,7 @@ package com.nathan.customer.auth.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.nathan.customer.auth.dto.LoginRequest;
 import com.nathan.customer.auth.entity.Account;
 import com.nathan.customer.auth.repo.AccountRepository;
 
@@ -20,4 +21,11 @@ public class AuthServiceImpl implements AuthService {
 	public Account findUserByName(final String name) {
 		return repository.findByUsername(name);
 	}
+
+	@Override
+	public Account findUser(LoginRequest user) {
+		return repository.findByUsername(user.getUsername());
+	}
+	
+	
 }
