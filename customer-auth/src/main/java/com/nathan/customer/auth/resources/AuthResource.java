@@ -5,17 +5,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nathan.customer.auth.dto.AuthToken;
 import com.nathan.customer.auth.dto.LoginRequest;
 import com.nathan.customer.auth.dto.PingResponse;
-import com.nathan.customer.auth.entity.Account;
 import com.nathan.customer.auth.service.AuthService;
 
 
@@ -47,7 +47,14 @@ public class AuthResource {
 	 */
 	@RequestMapping(method = RequestMethod.POST  , produces = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE } , 
 			consumes = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE } )
-	public Account login(@RequestBody LoginRequest user) {
-		return authService.findUser(user);
+	public AuthToken login(@RequestBody LoginRequest user) {
+		return authService.login(user);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE } , 
+			consumes = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE } )
+	public AuthToken validate(@RequestHeader("x-auth-token") String  token) {
+		return authService.validate(token);
+	}
+	
 }

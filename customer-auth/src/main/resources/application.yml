@@ -4,15 +4,11 @@ server:
 spring:
   application:
     name: Customer-Auth-Service
-  
-  security:
-   oauth2:
-    client:
-     registration:
-      google:
-       client-id: your-app-client-id
-       client-secret: your-app-client-secret    
-       
+  jackson:
+   serialization:
+    write_dates_as_timestamps: false
+   
+     
   boot:
    admin:
     url: ${CUSTOMER_ADMIN_URI:http://localhost:9000 }
