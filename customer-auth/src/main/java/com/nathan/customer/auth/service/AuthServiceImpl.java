@@ -1,7 +1,7 @@
 package com.nathan.customer.auth.service;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,58 +17,53 @@ import com.nathan.customer.auth.exception.AuthenticationException;
 import com.nathan.customer.auth.exception.InvalidTokenException;
 import com.nathan.customer.auth.repo.AccountRepository;
 
-
 @Service
 @Transactional
 public class AuthServiceImpl implements AuthService {
 
 	private AccountRepository repository;
-	private ConcurrentHashMap<String, AuthToken> users =  new ConcurrentHashMap<>();
+	private ConcurrentHashMap<String, AuthToken> users = new ConcurrentHashMap<>();
 
 	@Autowired
 	public AuthServiceImpl(AccountRepository repository) {
 		this.repository = repository;
 	}
-	
-	@Override
-	public Account findUserByName(final String name) {
-		return repository.findByUsername(name);
-	}
 
-	@Override
-	public Account findUser(LoginRequest user) {
-		return repository.findByUsername(user.getUsername());
-	}
-	
-	
 	@Override
 	public AuthToken login(LoginRequest user) {
-		
+
 		Account entity = repository.findByUsername(user.getUsername());
-		return Optional.ofNullable(entity)
-				.map( p -> generateToken(entity , user))
+		return Optional.ofNullable(entity).map(p -> generateToken(entity, user))
 				.orElseThrow(() -> new AuthenticationException());
-		
-		
+
 	}
 
-	private AuthToken generateToken(Account entity,LoginRequest user) {
-		
+	private AuthToken generateToken(Account entity, LoginRequest user) {
+
 		if (user.getPassword().equals(entity.getPassword())) {
 			return getUser(user.getUsername());
 		} else {
 			throw new AuthenticationException();
 		}
 	}
-	
-	
+
 	private AuthToken getUser(String username) {
 
-		AuthToken token = new AuthToken();
-		token.setToken(UUID.randomUUID().toString());
-		token.setActiveTime(LocalDateTime.now());
-		users.put(token.getToken(), token);
+		AuthToken token = users.entrySet()
+				.stream()
+				.filter(e -> e.getValue().getUsername().equals(username))
+				.map(Map.Entry::getValue)
+				.findFirst().orElse(null);
 
+		if (token != null) {
+			token.setActiveTime(LocalDateTime.now());
+		} else {
+			token = new AuthToken();
+			token.setToken(UUID.randomUUID().toString());
+			token.setActiveTime(LocalDateTime.now());
+			token.setUsername(username);
+			users.put(token.getToken(), token);
+		}
 		return token;
 	}
 
@@ -76,11 +71,11 @@ public class AuthServiceImpl implements AuthService {
 	public AuthToken validate(String token) {
 
 		AuthToken auth = users.get(token);
-		if  (auth == null) {
+		if (auth == null) {
 			throw new InvalidTokenException();
 		}
 		auth.setActiveTime(LocalDateTime.now());
 		return auth;
 	}
-	
+
 }

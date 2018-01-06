@@ -14,5 +14,7 @@ import lombok.Setter;
 public class AuthToken {
 
 	private String token;
+	private String username;
+	private LocalDateTime sessionStarted = LocalDateTime.now();
 	private LocalDateTime  activeTime;
 }

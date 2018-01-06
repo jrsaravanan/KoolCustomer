@@ -7,10 +7,6 @@ import com.nathan.customer.auth.entity.Account;
 public interface AuthService {
 
 
-	Account findUserByName(String name);
-
-	Account findUser(LoginRequest user);
-
 	AuthToken login(LoginRequest user);
 
 	AuthToken validate(String token);
