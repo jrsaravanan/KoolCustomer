@@ -1,4 +1,4 @@
-= Greeting REST Service API Guide
+= Customers REST Service API Guide
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
