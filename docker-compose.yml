@@ -2,6 +2,9 @@ version: '3'
 volumes:
  dbdata: 
 
+networks:
+ default:
+
 services:
 
   admin-ui:
@@ -39,16 +42,18 @@ services:
   auth-service:
    image: jrsaravanan/customer-auth
    environment:
-    CUSTOMER_APP_USER: appuser
-    CUSTOMER_APP_PASSWORD: appuser
-    CUSTOMER_DB_URI: authdb:3306/auth
+    AUTH_APP_USER: appuser
+    AUTH_APP_PASSWORD: appuser
+    AUTH_DB_URI: 'customer-auth-db:3306/auth'
     CUSTOMER_ADMIN_URI: http://admin-ui:9000/
     DISCOVERY_URI: http://discovery:8761/eureka
-    SLEEP_LENGTH: 1.0   
+    INIT_DB: 'true' 
+    PORT: 8080
+    SLEEP_LENGTH: 0.5  
    ports:
     - 8080
    depends_on:
-    - authdb
+    - customer-auth-db
     - admin-ui
     - discovery   
 
@@ -66,21 +71,16 @@ services:
    volumes: 
      - /opt/mysql/data:/var/lib/mysql
        
-  authdb:
+  customer-auth-db:
    image: mysql:5.6
-   container_name: authdb
+   container_name: customer-auth-db
    environment:
      MYSQL_ROOT_PASSWORD: admin
      MYSQL_DATABASE: auth
      MYSQL_USER: appuser
      MYSQL_PASSWORD: appuser  
-     MYSQL_ROOT_PASSWORD: appuser    
-     INIT_DB: true 
+     MYSQL_ROOT_PASSWORD: appuser     
    ports:
-     - :3306
-   volumes: 
-     - /opt/mysql/authdata:/var/lib/mysql
-
-
+     - 13306:3306
   
 
