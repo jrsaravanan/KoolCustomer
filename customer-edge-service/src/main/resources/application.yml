@@ -1,0 +1,48 @@
+server:
+  port: ${PORT:9090}
+
+spring:
+  application:
+    name: api-service
+  boot:
+   admin:
+    url: ${CUSTOMER_ADMIN_URI:http://localhost:9000 }  
+
+logging:
+  level: 
+   ROOT: info
+  file: logs/customer-edge-service.log
+
+eureka:
+ client:
+  enabled: true
+  registerWithEureka: false
+  fetchRegistry: true
+  serviceUrl:
+   defaultZone: ${DISCOVERY_URI:http://127.0.0.1:8761/eureka}
+  server:
+    enableSelfPreservation: false
+
+ribbon:
+ eureka:
+  enabled: true
+  
+management:
+  security:
+    enabled: false
+
+zuul:
+ routes:
+  
+  auth-service:
+   path: /v1.0/auth/**
+   serviceId: auth-service
+   stripPrefix: false
+  
+  customer-service:
+   path: /v1.0/customers/**
+   serviceId: customer-service
+   stripPrefix: false   
+
+auth-service:
+ url: http://auth-service/v1.0/auth  

@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: Customer-Admin-Service
+    name: admin-service
 
 logging:
   file: logs/customer-admin-service.log

@@ -23,6 +23,8 @@ import com.nathan.customer.auth.service.AuthService;
 @RequestMapping("v1.0/auth")
 public class AuthResource {
 
+	private static final String X_AUTH_TOKEN = "X-Auth-Token";
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(AuthResource.class);
 	
 	private static final String template = "Hello, %s!";
@@ -45,7 +47,7 @@ public class AuthResource {
 	/**
 	 * Get customer details by id 
 	 */
-	@RequestMapping(method = RequestMethod.POST  , produces = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE } , 
+	@RequestMapping(method = RequestMethod.POST  , path ="/login" , produces = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE } , 
 			consumes = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE } )
 	public AuthToken login(@RequestBody LoginRequest user) {
 		return authService.login(user);
@@ -53,7 +55,7 @@ public class AuthResource {
 	
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE } , 
 			consumes = { MediaType.APPLICATION_JSON_VALUE , MediaType.APPLICATION_XML_VALUE } )
-	public AuthToken validate(@RequestHeader("x-auth-token") String  token) {
+	public AuthToken validate(@RequestHeader(X_AUTH_TOKEN) String  token) {
 		return authService.validate(token);
 	}
 	

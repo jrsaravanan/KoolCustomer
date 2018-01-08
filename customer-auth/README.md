@@ -17,7 +17,7 @@ TODO : Reused existing code , have to implement OAth2
  
 ### Login
 ```
- $ curl 'http://localhost:8070/v1.0/auth' -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d '{ "username": "appuser", "password": "appuser"}'
+ $ curl 'http://localhost:8070/v1.0/auth/login' -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d '{ "username": "appuser", "password": "appuser"}'
  
  Response
  {

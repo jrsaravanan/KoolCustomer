@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/jrsaravanan/KoolCustomer.svg?branch=master)](https://travis-ci.org/jrsaravanan/KoolCustomer)
-
 # KoolCustomer
 
 A Microservice PoC. 
@@ -8,9 +6,11 @@ Build Using
 * JDK 8
 * Spring Boot
 * Spring Admin
+* Zuul
 * Eureka
 * Admin UI
 * Cucummber JVM
+* Lombok
 * Rest Assured
 * REST Doc
  
