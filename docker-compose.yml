@@ -82,5 +82,17 @@ services:
      MYSQL_ROOT_PASSWORD: appuser     
    ports:
      - 13306:3306
-  
+
+  api-service:
+   image: jrsaravanan/customer-edge-service
+   environment:
+    CUSTOMER_ADMIN_URI: http://admin-ui:9000/
+    DISCOVERY_URI: http://discovery:8761/eureka
+    PORT: 8080
+   ports:
+    - 8080
+   depends_on:
+    - discovery    
+    - auth-service
+    - customer-service
 
