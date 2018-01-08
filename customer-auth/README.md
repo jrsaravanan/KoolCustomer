@@ -1,12 +1,13 @@
 # Customer Auth Service
 
 Authentication and Authorization Service .
+Simple login service , just a plain db authentication
+TODO : Reused existing code , have to implement OAth2
 
  - Spring Boot
- - Spring Cloud
+ - Spring Cloud , Eureka
  - Lombok   
-
- TODO : Reused existing code , have to implement OAth2
+ - Spring Admin
  
  ```sh
  # First time to load the data
@@ -40,11 +41,11 @@ $ curl 'http://localhost:8070/v1.0/auth' -i -X GET -H 'Content-Type: application
 
 $ mvn dockerfile:build
 
-$ export CUSTOMER_SVR_HOST_NAME=$(hostname  -I | cut -f1 -d " ")
 
-$ docker run -d --name mysql-server -e MYSQL_DATABASE="auth" -e MYSQL_USER="appuser" -e MYSQL_PASSWORD="appuser"  -e MYSQL_ROOT_PASSWORD="appuser" -e MYSQL_ROOT_HOST=$CUSTOMER_SVR_HOST_NAME -p 3306:3306 mysql:5.6
+$ docker run -d --name db -e MYSQL_DATABASE="auth" -e MYSQL_USER="appuser" -e MYSQL_PASSWORD="appuser"  -e MYSQL_ROOT_PASSWORD="root" -p 3306:3306 mysql:5.6
 
-# First Time enable  INIT_DB=true
-$ docker run  -e PORT=8080 -e INIT_DB=true -e AUTH_APP_USER='appuser' -e AUTH_APP_PASSWORD='appuser'  -e AUTH_DB_URI=$CUSTOMER_SVR_HOST_NAME:3306/auth   -p 8080:8080 -t jrsaravanan/customer-auth
+# whenever you span a new container enable  INIT_DB=true
+$ docker run  -e PORT=8070 -e INIT_DB=true -e AUTH_APP_USER='appuser' -e AUTH_APP_PASSWORD='appuser'  -e AUTH_DB_URI='db:3306/auth'   -p 8070:8070 --name customer-auth  --link db:db -t jrsaravanan/customer-aut
+h
 
 ```

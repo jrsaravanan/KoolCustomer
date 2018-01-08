@@ -9,6 +9,7 @@
 	<name>koolcustomer</name>
 
 	<modules>
+		<module>customer-auth</module>
 		<module>customer-service</module>		
 		<module>customer-admin</module>		
 		<module>customer-discovery</module>
