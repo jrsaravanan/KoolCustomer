@@ -12,6 +12,7 @@
 		<module>customer-service</module>		
 		<module>customer-admin</module>		
 		<module>customer-discovery</module>
+		<module>customer-edge-service</module>
 	</modules>
 
 </project>

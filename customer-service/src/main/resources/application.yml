@@ -4,7 +4,7 @@ server:
 
 spring:
   application:
-    name: Customer-Service
+    name: customer-service
   boot:
    admin:
     url: ${CUSTOMER_ADMIN_URI:http://localhost:9000 }

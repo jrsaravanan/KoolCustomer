@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: Customer-Discovery-Service
+    name: discovery-service
   boot:
    admin:
     url: ${CUSTOMER_ADMIN_URI:http://localhost:9000 }  

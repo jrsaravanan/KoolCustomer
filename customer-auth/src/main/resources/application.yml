@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: Customer-Auth-Service
+    name: auth-service
   jackson:
    serialization:
     write_dates_as_timestamps: false
@@ -28,7 +28,7 @@ management:
   enabled: false    
 
 logging:
-  file: logs/customer-auth-service.log
+  file: logs/auth-service.log
   level.com.nathan: debug
 
 eureka:
