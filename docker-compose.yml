@@ -68,8 +68,7 @@ services:
      MYSQL_ROOT_PASSWORD: appuser     
    ports:
      - 3306:3306
-   volumes: 
-     - /opt/mysql/data:/var/lib/mysql
+
        
   customer-auth-db:
    image: mysql:5.6
