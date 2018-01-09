@@ -67,7 +67,7 @@ services:
      MYSQL_PASSWORD: appuser  
      MYSQL_ROOT_PASSWORD: appuser     
    ports:
-     - 3306:3306
+     - 3306
 
        
   customer-auth-db:
@@ -80,7 +80,7 @@ services:
      MYSQL_PASSWORD: appuser  
      MYSQL_ROOT_PASSWORD: appuser     
    ports:
-     - 13306:3306
+     - 3306
 
   api-service:
    image: jrsaravanan/customer-edge-service
