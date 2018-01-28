@@ -25,13 +25,17 @@ $ docker-compose up
 ## Run
 ```sh
 
-## Replace 192.168.10.129 with your ip
-
 # Build and Run
+
+$ git clone https://github.com/jrsaravanan/KoolCustomer.git
+
+$ cd KoolCustomer
 
 $ .\mvn.install.sh
 
 $ docker-compose up
+
+# Replace 192.168.10.129 with your ip
 
 # Login
 $ curl 'http://192.168.10.129:9991/v1.0/auth/login' -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d '{ "username": "appuser", "password": "appuser"}'
