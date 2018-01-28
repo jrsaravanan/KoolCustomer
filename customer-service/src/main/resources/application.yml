@@ -9,7 +9,7 @@ spring:
    admin:
     url: ${CUSTOMER_ADMIN_URI:http://localhost:9000 }
   datasource:
-   url: jdbc:mysql://${CUSTOMER_DB_URI:localhost:3306/customers}
+   url: ${CUSTOMER_DB_URI:jdbc:mysql://localhost:3306/customers}
    username: ${CUSTOMER_APP_USER:appuser}
    password: ${CUSTOMER_APP_PASSWORD:appuser}
    driver-class-name: com.mysql.jdbc.Driver  

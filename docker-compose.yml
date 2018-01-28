@@ -28,7 +28,7 @@ services:
    environment:
     CUSTOMER_APP_USER: appuser
     CUSTOMER_APP_PASSWORD: appuser
-    CUSTOMER_DB_URI: customerdb:3306/customers
+    CUSTOMER_DB_URI: jdbc:mysql://customerdb:3306/customers
     CUSTOMER_ADMIN_URI: http://admin-ui:9000/
     DISCOVERY_URI: http://discovery:8761/eureka
     SLEEP_LENGTH: 1.0   
@@ -44,7 +44,7 @@ services:
    environment:
     AUTH_APP_USER: appuser
     AUTH_APP_PASSWORD: appuser
-    AUTH_DB_URI: 'customer-auth-db:3306/auth'
+    AUTH_DB_URI: 'jdbc:mysql://customer-auth-db:3306/auth'
     CUSTOMER_ADMIN_URI: http://admin-ui:9000/
     DISCOVERY_URI: http://discovery:8761/eureka
     INIT_DB: 'true' 

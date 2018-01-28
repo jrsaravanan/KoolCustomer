@@ -14,7 +14,7 @@ spring:
     url: ${CUSTOMER_ADMIN_URI:http://localhost:9000 }
   datasource:
    initialize: ${INIT_DB:false}
-   url: jdbc:mysql://${AUTH_DB_URI:localhost:3306/auth}
+   url: ${AUTH_DB_URI:jdbc:mysql://localhost:3306/auth}
    username: ${AUTH_APP_USER:appuser}
    password: ${AUTH_APP_PASSWORD:appuser}
    driver-class-name: com.mysql.jdbc.Driver  
