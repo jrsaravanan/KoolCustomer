@@ -27,6 +27,12 @@ $ docker-compose up
 
 ## Replace 192.168.10.129 with your ip
 
+# Build and Run
+
+$ .\mvn.install.sh
+
+$ docker-compose up
+
 # Login
 $ curl 'http://192.168.10.129:9991/v1.0/auth/login' -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d '{ "username": "appuser", "password": "appuser"}'
 HTTP/1.1 200
@@ -62,10 +68,10 @@ $curl 'http://192.168.10.129:9991/v1.0/customers' -i -X GET -H 'Content-Type: ap
 ```
 
 ## Admin Dashboard
-http://<yourip>:9000
+http://HostIP:9000
 
 ## Discovery 
-http://<yourip>:8761
+http://HostIP:8761
 
 ## HTTP verbs
 Customer Service uses REST standards and adhere HTTP verbs for opearion.
