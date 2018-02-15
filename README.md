@@ -35,10 +35,10 @@ $ .\mvn.install.sh
 
 $ docker-compose up
 
-# Replace 192.168.10.129 with your ip
+
 
 # Login
-$ curl 'http://192.168.10.129:9991/v1.0/auth/login' -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d '{ "username": "appuser", "password": "appuser"}'
+$ curl 'http://<YourIP>:9991/v1.0/auth/login' -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d '{ "username": "appuser", "password": "appuser"}'
 HTTP/1.1 200
 X-Application-Context: api-service:8080
 Date: Sun, 28 Jan 2018 19:27:58 GMT
@@ -48,7 +48,7 @@ Transfer-Encoding: chunked
 {"token":"b8ab9902-a250-427c-b1e8-b64d1a888cca","sessionStarted":"2018-01-28T19:25:49.596","activeTime":"2018-01-28T19:27:58.033"}
 
 # Test API , use token as x-auth-token
-$ curl 'http://192.168.10.129:9991/v1.0/customers/ping' -i -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'x-auth-token:b8ab9902-a250-427c-b1e8-b64d1a888cca'
+$ curl 'http://<YourIP>:9991/v1.0/customers/ping' -i -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'x-auth-token:b8ab9902-a250-427c-b1e8-b64d1a888cca'
 HTTP/1.1 200
 X-Application-Context: api-service:8080
 Date: Sun, 28 Jan 2018 19:57:07 GMT
@@ -59,15 +59,15 @@ Transfer-Encoding: chunked
 
 
 # Add Customer
-$ curl 'http://192.168.10.129:9991/v1.0/customers' -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'x-auth-token:b8ab9902-a250-427c-b1e8-b64d1a888cca' -d  '{ "firstName":"S2","lastName":"G2","serviceType":"SG","age":100,"emailId":"test@test.com"}'
+$ curl 'http://<YourIP>:9991/v1.0/customers' -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'x-auth-token:b8ab9902-a250-427c-b1e8-b64d1a888cca' -d  '{ "firstName":"S2","lastName":"G2","serviceType":"SG","age":100,"emailId":"test@test.com"}'
 HTTP/1.1 201
 X-Application-Context: api-service:8080
 Date: Sun, 28 Jan 2018 20:32:28 GMT
-Location: http://192.168.10.129:9991/v1.0/customers/3Content-Type: application/json;charset=UTF-8Transfer-Encoding: chunked
-{"customerId":3,"firstName":"S2","lastName":"G2","serviceType":"SG","age":100,"emailId":"test@test.com","_links":{"self":{"href":"http://192.168.10.129:9991/v1.0/customers/3"}}
+Location: http://<YourIP>:9991/v1.0/customers/3Content-Type: application/json;charset=UTF-8Transfer-Encoding: chunked
+{"customerId":3,"firstName":"S2","lastName":"G2","serviceType":"SG","age":100,"emailId":"test@test.com","_links":{"self":{"href":"http://<YourIP>:9991/v1.0/customers/3"}}
 
 # List Customer
-$curl 'http://192.168.10.129:9991/v1.0/customers' -i -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'x-auth-token:b8ab9902-a250-427c-b1e8-b64d1a888cca'
+$curl 'http://<YourIP>:9991/v1.0/customers' -i -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'x-auth-token:b8ab9902-a250-427c-b1e8-b64d1a888cca'
 
 ```
 
