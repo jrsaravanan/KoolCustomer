@@ -19,7 +19,7 @@ services:
    environment:
     CUSTOMER_ADMIN_URI: http://admin-ui:9000/
    ports:
-    - 8761
+    - 8761:8761
    depends_on:
     - admin-ui
    
@@ -87,9 +87,9 @@ services:
    environment:
     CUSTOMER_ADMIN_URI: http://admin-ui:9000/
     DISCOVERY_URI: http://discovery:8761/eureka
-    PORT: 8080
+    PORT: 9991
    ports:
-    - 8080
+    - 9991:9991
    depends_on:
     - discovery    
     - auth-service
