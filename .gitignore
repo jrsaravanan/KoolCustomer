@@ -8,3 +8,7 @@ target/
 #eclipse
 .classpath
 .project
+
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
