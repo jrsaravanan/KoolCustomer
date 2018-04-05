@@ -16,7 +16,7 @@ Build Using
 * Rest Assured
 * REST Doc
  
-##Architecture
+## Architecture
 ![alt text](arch.jpg "Architecture")
 
 ## Build 
