@@ -1,8 +1,7 @@
 # Customer Auth Service
 
-Authentication and Authorization Service .
-Simple login service , just a plain db authentication
-TODO : Reused existing code , have to implement OAth2
+Customer OAuth2 - Authentication and Authorization Service .
+
 
  - Spring Boot
  - Spring Cloud , Eureka
@@ -31,7 +30,7 @@ $ curl -X POST --user "html5:password" -d "grant_type=password&username=appuser&
 ### Validate
 
 ```
-$ curl 'http://localhost:8070/v1.0/auth' -i -X GET -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'x-auth-token:51ace996-f34f-426f-babd-fc3cf2acae33'
+$ curl 'http://localhost:8070/uaa/user' -H 'Accept: application/json' -H 'Authorization:43507f21-f699-437f-97fa-3ace228827f5'
 
 ```
 
