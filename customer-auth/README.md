@@ -17,8 +17,8 @@ TODO : Reused existing code , have to implement OAth2
  
 ### Login
 
-![alt text](1.png "Header")
-![alt text](2.png "body")
+![alt text](1.PNG "Header")
+![alt text](2.PNG "body")
  
 ### Validate
 
