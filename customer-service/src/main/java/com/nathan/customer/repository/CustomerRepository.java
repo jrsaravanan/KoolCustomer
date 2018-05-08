@@ -10,6 +10,7 @@ import com.nathan.customer.entity.Customer;
 /**
  * Customer Repository CRUD operations extends from {@link CrudRepository}
  */
+
 public interface CustomerRepository  extends  JpaRepository<Customer, Long> {
 
 	/**

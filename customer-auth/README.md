@@ -16,18 +16,9 @@ TODO : Reused existing code , have to implement OAth2
  ```
  
 ### Login
-```
- $ curl 'http://localhost:8070/v1.0/auth/login' -i -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' -d '{ "username": "appuser", "password": "appuser"}'
- 
- Response
- {
-    "token": "51ace996-f34f-426f-babd-fc3cf2acae33",
-    "username": "appuser",
-    "sessionStarted": "2018-01-06T13:41:46.124",
-    "activeTime": "2018-01-06T13:44:17.942"
-}
 
- ```
+![alt text](1.png "Header")
+![alt text](2.png "body")
  
 ### Validate
 

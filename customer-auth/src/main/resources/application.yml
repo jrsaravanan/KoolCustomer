@@ -1,5 +1,9 @@
 server:
   port: ${PORT:8070}
+  contextPath: /uaa
+
+security:
+ session: if_required
 
 spring:
   application:

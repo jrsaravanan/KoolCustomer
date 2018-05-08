@@ -2,6 +2,7 @@ package com.nathan.customer.config;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -24,4 +25,5 @@ public class ApplicationConfig {
 		
 		return modelMapper;
 	}
+	
 }

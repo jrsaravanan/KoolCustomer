@@ -1,5 +1,7 @@
 package com.nathan.customer.auth.repo;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.nathan.customer.auth.entity.Account;
@@ -7,6 +9,5 @@ import com.nathan.customer.auth.entity.Account;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
 	
-	Account findByUsername(String name);
-
+	Optional<Account> findByUsername(String name);
 }

@@ -32,8 +32,8 @@ public class AuthServiceImpl implements AuthService {
 	@Override
 	public AuthToken login(LoginRequest user) {
 
-		Account entity = repository.findByUsername(user.getUsername());
-		return Optional.ofNullable(entity).map(p -> generateToken(entity, user))
+		Optional<Account> entity = repository.findByUsername(user.getUsername());
+		return entity.map(p -> generateToken(p, user))
 				.orElseThrow(() -> new AuthenticationException());
 
 	}
