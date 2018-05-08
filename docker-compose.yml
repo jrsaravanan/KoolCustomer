@@ -87,6 +87,9 @@ services:
    environment:
     CUSTOMER_ADMIN_URI: http://admin-ui:9000/
     DISCOVERY_URI: http://discovery:8761/eureka
+    AUTH_LOGIN_URI: http://auth-service/uaa/oauth/token
+    AUTH_VAL_URI: http://auth-service/uaa/oauth/authorize
+    AUTH_USER_URI: http://auth-service/uaa/user
     PORT: 9991
    ports:
     - 9991:9991
