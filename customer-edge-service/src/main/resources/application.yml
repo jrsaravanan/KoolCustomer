@@ -35,7 +35,7 @@ zuul:
  routes:
   
   auth-service:
-   path: /v1.0/auth/**
+   path: /uaa/**
    serviceId: auth-service
    stripPrefix: false
   
@@ -45,4 +45,21 @@ zuul:
    stripPrefix: false   
 
 auth-service:
- url: http://auth-service/v1.0/auth  
+ url: http://auth-service/v1.0/auth
+ 
+security:
+ basic:
+  enable: false
+ oauth2:
+  sso:
+   loginPath: /login
+  client:
+   accessTokenUri: ${AUTH_LOGIN_URI:http://127.0.0.1:8070/uaa/oauth/token}
+   userAuthorizationUri: ${AUTH_VAL_URI:http://127.0.0.1:8070/uaa/oauth/authorize}
+   clientId: html5
+   clientSecret: password
+  resource:
+   userInfoUri: ${AUTH_USER_URI:http://1270.01:8070/uaa/oauth/user}
+   preferTokenInfo: false
+  session: ALWAYS
+  
