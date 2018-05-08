@@ -53,6 +53,8 @@ security:
       clientId: html5
       clientSecret: password
     resource:
+      loadBalanced: true
       userInfoUri: ${AUTH_USER_URI:http://127.0.0.1:8070/uaa/user}
       preferTokenInfo: false
     session: ALWAYS
+    

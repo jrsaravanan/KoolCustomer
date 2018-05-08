@@ -37,6 +37,24 @@ module "ssh_server_sg" {
   ingress_cidr_blocks = ["0.0.0.0/0"]
 }
 
+module "tcp_sg" {
+  source  = "terraform-aws-modules/security-group/aws"
+  name                = "tcp-sg"
+  description         = "Security group with TCP ports"
+  vpc_id              = "${module.vpc.vpc_id}"
+  
+   ingress_with_cidr_blocks = [
+    {
+      from_port   = 8080
+      to_port     = 8080
+      protocol    = "tcp"
+      description = "User-service ports (ipv4)"
+      cidr_blocks = "0.0.0.0/0"
+    },
+  ]
+
+}
+
 resource "aws_iam_role" "role" {
   name = "CustomerS3AdminUser"
 
@@ -65,10 +83,10 @@ resource "aws_iam_instance_profile" "profile" {
 }
 
 resource "aws_instance" "web" {
-  ami                  = "ami-7c87d913"
+  ami                  = "ami-08c54abff5220cc66"
   instance_type        = "t2.micro"
   subnet_id            = "${element(module.vpc.public_subnets, 0)}"
-  security_groups      = ["${module.ssh_server_sg.this_security_group_id}", "${module.http_sg.this_security_group_id}"]
+  security_groups      = ["${module.ssh_server_sg.this_security_group_id}", "${module.http_sg.this_security_group_id}" , "${module.tcp_sg.this_security_group_id}"]
   key_name             = "cloudpratice"
   iam_instance_profile = "${aws_iam_instance_profile.profile.name}"
 
@@ -77,15 +95,3 @@ resource "aws_instance" "web" {
   }
 }
 
-resource "aws_instance" "data" {
-  ami                  = "ami-7c87d913"
-  instance_type        = "t2.micro"
-  subnet_id            = "${element(module.vpc.private_subnets, 0)}"
-  security_groups      = ["${module.ssh_server_sg.this_security_group_id}", "${module.http_sg.this_security_group_id}"]
-  key_name             = "cloudpratice"
-  iam_instance_profile = "${aws_iam_instance_profile.profile.name}"
-
-  tags {
-    Name = "customer-dev-data"
-  }
-}
