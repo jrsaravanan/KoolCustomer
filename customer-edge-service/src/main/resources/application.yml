@@ -48,11 +48,7 @@ auth-service:
  url: http://auth-service/v1.0/auth
  
 security:
- basic:
-  enable: false
  oauth2:
-  sso:
-   loginPath: /login
   client:
    accessTokenUri: ${AUTH_LOGIN_URI:http://127.0.0.1:8070/uaa/oauth/token}
    userAuthorizationUri: ${AUTH_VAL_URI:http://127.0.0.1:8070/uaa/oauth/authorize}
