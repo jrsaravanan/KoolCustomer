@@ -18,7 +18,15 @@ TODO : Reused existing code , have to implement OAth2
 ### Login
 
 ![alt text](1.PNG "Header")
+
+
 ![alt text](2.PNG "body")
+
+####
+```
+$ curl -X POST --user "html5:password" -d "grant_type=password&username=appuser&password=appuser" http://localhost:8070/uaa/oauth/token 
+
+```
  
 ### Validate
 
