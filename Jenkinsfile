@@ -1,35 +1,14 @@
-pipeline {
-  agent {
-    kubernetes {
-      label 'customer-portal-app'
-      yaml '''
-  spec:
-  containers:
-  - name: jnlp
-  - name: jdk
-    image: openjdk:11-jdk
-    command:
-    - cat
-    tty: true
-      '''
-    }
-  }
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '5'))
-  }
-  stages {
-    stage('Build') {
-      steps {
-        container ('jdk') {
-          // Note: consider using Pipeline Maven integration to
-          // inject Maven settings
-          // collect Maven build reports
-          // trigger pipeline on snapshot dependency updates
-          sh 'mvn clean install'
+podTemplate(label: 'mypod', containers: [
+    containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', ttyEnabled: true, command: 'cat'),
+    containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave', args: '${computer.jnlpmac} ${computer.name}'),
+]) {
+
+    node ('mypod') {
+        stage 'Get a Maven project'
+        git 'https://github.com/jenkinsci/kubernetes-plugin.git'
+        container('maven') {
+            stage 'Build a Maven project'
+            sh 'mvn clean install'
         }
-      }
     }
-    
-  }
-  
 }
