@@ -29,11 +29,7 @@ pipeline {
         }
       }
     }
-    stage ('Deploy to Testing Environment') {
-      steps {
-        
-      }
-    }
+    
   }
   
 }
