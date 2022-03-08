@@ -1,4 +1,4 @@
-ipeline {
+pipeline {
   agent {
     kubernetes {
       label 'customer-portal-app'
